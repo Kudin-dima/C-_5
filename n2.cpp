@@ -1,25 +1,47 @@
 #include <iostream>
-using namespace std;
-
+#include <algorithm>
+#include <ctime>
+#include <cstdlib>
+#include <cmath>
+using namespace std; 
 int main()
 {
-    int a[10], lim;
+	setlocale(LC_ALL, "rus");
 
-    cout << "enter num limit \n";
-    cin >> lim;
+	int x, y, a = 0;
 
-    srand(time(0));
 
-    for (int i = 0; i < 10; i++)
-    {
-        a[i] = rand() % lim - (lim / 2);
-        cout << a[i] << " ";
-    }
+	srand(time(NULL));
 
-    int max = 0 - lim;
-    for (int i = 0; i < 10; i++)
-        if ((a[i] % 2 == 0) && (a[i] > max))
-            max = a[i];
+	cout << "Введите количество чисел в массиве" << endl;
+	cin >> a;
+	int Arr[a] = {};
 
-    cout << "\n\n" << max;
+	cout << "Введите максимум и минимум" << endl;
+	cin >> x >> y;
+	const int upperlim = x;
+	const int lowerlim = y;
+
+	int b = y;
+
+	for (int i = 0; i < a; i++)
+	{
+		Arr[i] = lowerlim + rand() % (upperlim - lowerlim + 1);
+		cout << Arr[i] << " | ";
+	}
+
+	cout << endl << endl;
+
+	for (int i = 0; i < a; i += 2)
+	{
+		if (Arr[i] > b)
+		{
+			b = Arr[i];
+		}
+	}
+
+	cout << "Максимальный элемент с четным индексом = " << b << endl;
+
+	return 0;
+
 }
